@@ -1,4 +1,4 @@
-package com.crittergestionfx.controller.crittergestionfx;
+package com.crittergestionfx.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

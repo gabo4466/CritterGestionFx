@@ -1,4 +1,4 @@
-package com.crittergestionfx.controller.crittergestionfx;
+package com.crittergestionfx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

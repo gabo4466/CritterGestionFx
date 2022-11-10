@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.crittergestionfx.controller.crittergestionfx/com.crittergestionfx.controller.crittergestionfx.HelloApplication
+                                com.crittergestionfx.controller.crittergestionfx/com.crittergestionfx.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
