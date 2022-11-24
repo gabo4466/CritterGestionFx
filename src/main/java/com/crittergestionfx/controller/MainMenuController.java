@@ -1,6 +1,5 @@
 package com.crittergestionfx.controller;
 
-import com.crittergestionfx.model.services.SceneManagerService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +40,27 @@ public class MainMenuController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listUsersButton.setOnAction(actionEvent -> {
+            try {
+                loadNextScreen(actionEvent, "list-users.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        registerAdminButton.setOnAction(actionEvent -> {
+            try {
+                loadNextScreen(actionEvent, "register-user.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        logoutButton.setOnAction(actionEvent -> {
+            try {
+                loadNextScreen(actionEvent, "critter-index.fxml");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
 }
