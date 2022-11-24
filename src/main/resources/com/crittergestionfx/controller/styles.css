@@ -9,3 +9,8 @@
 .label{
     color: #fff;
 }
+
+.table-view {
+    -fx-background-color: #7aa2f7;
+    -fx-text-fill: #fff;
+}
