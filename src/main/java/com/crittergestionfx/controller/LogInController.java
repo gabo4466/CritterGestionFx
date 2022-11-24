@@ -55,15 +55,12 @@ public class LogInController implements Initializable {
     }
 
     private void loadMenu(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
-        Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-menu.fxml"));
-        root = fxmlLoader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        MainMenuController controller = fxmlLoader.getController();
-        controller.initData("");
+        Parent root = fxmlLoader.load();
+        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+//        MainMenuController controller = fxmlLoader.getController();
+//        controller.initData("");
         stage.setScene(scene);
         stage.show();
     }

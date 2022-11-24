@@ -26,18 +26,11 @@ public class SceneManagerService {
         return instance;
     }
 
-    private void loadScene(ActionEvent event) throws IOException {
-        Stage stage;
-        Scene scene;
+    public Scene loadScene(ActionEvent event, String nameFXML) throws IOException {
         Parent root;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-menu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(nameFXML));
         root = fxmlLoader.load();
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        MainMenuController controller = fxmlLoader.getController();
-        //controller.initData("");
-        stage.setScene(scene);
-        stage.show();
+        return new Scene(root);
     }
 
 }
