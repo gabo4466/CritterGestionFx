@@ -77,6 +77,11 @@ public class User {
         this.admin = admin;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User logIn() throws SQLException, ClassNotFoundException, UserException{
         return UserDaoImp.getInstance().logIn(this);
     }

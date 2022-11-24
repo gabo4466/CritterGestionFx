@@ -1,5 +1,8 @@
 package com.crittergestionfx.controller;
 
+import com.crittergestionfx.model.exceptions.UserException;
+import com.crittergestionfx.model.objects.User;
+import com.crittergestionfx.model.services.HashService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LogInController implements Initializable {
@@ -28,13 +32,20 @@ public class LogInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        buttonLogIn.setOnAction(actionEvent -> {
-            try {
-                loadMenu(actionEvent);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
+        buttonLogIn.setOnAction(this::logIn);
+    }
+
+    private void logIn(ActionEvent event) {
+        HashService hashService = new HashService();
+        User user = new User(fieldEmail.getText(), hashService.toHash(fieldPassword.getText()));
+
+        try {
+            user.logIn();
+            loadMenu(event);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void loadMenu(ActionEvent event) throws IOException {
