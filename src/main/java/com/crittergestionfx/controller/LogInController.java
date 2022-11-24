@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -28,7 +29,10 @@ public class LogInController implements Initializable {
     private TextField fieldEmail;
 
     @FXML
-    private TextField fieldPassword;
+    private Label errorText;
+
+    @FXML
+    private PasswordField fieldPassword;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -42,6 +46,8 @@ public class LogInController implements Initializable {
         try {
             user.logIn();
             loadMenu(event);
+        } catch (UserException e) {
+            errorText.setText(e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

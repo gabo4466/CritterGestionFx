@@ -68,7 +68,7 @@ public class UserDaoImp implements GenericDao<User> {
             }
         }else{
             result = null;
-            throw new UserException(prop.getProperty("error.accessDenied"));
+            throw new UserException(prop.getProperty("error.wrongCredentials"));
         }
         return result;
     }
