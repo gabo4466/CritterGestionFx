@@ -25,7 +25,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>18.0.1</version>
         </dependency>
-bn
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -38,6 +37,13 @@ bn
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.31</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -61,7 +67,7 @@ bn
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.crittergestionfx.controller.crittergestionfx/com.crittergestionfx.App
+                                com.crittergestionfx.controller.crittergestionfx/com.crittergestionfx.controller.App
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
