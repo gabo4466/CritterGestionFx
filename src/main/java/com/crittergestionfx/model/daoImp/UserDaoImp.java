@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 public class UserDaoImp implements GenericDao<User> {
@@ -48,6 +49,18 @@ public class UserDaoImp implements GenericDao<User> {
     @Override
     public User read(int id) {
         return null;
+    }
+
+    public ArrayList<User> getAll() throws SQLException {
+        ArrayList<User> result = new ArrayList<User>();
+        String query = "select id_user, email, admin, name, banned from critter.users where admin=0;";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        ResultSet rs = stmt.executeQuery();
+        while (rs.next()) {
+            result.add(new User(rs.getInt("id_user"), rs.getString("email"),
+                    rs.getString("name"), rs.getBoolean("banned")));
+        }
+        return result;
     }
 
     public User logIn (User userNotLogged) throws SQLException, UserException, ClassNotFoundException {

@@ -49,6 +49,7 @@ public class LogInController implements Initializable {
         } catch (UserException e) {
             errorText.setText(e.getMessage());
         } catch (Exception e) {
+            errorText.setText("Something went wrong");
             throw new RuntimeException(e);
         }
 
@@ -59,8 +60,8 @@ public class LogInController implements Initializable {
         Parent root = fxmlLoader.load();
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-//        MainMenuController controller = fxmlLoader.getController();
-//        controller.initData("");
+        //MainMenuController controller = fxmlLoader.getController();
+        //controller.initData("");
         stage.setScene(scene);
         stage.show();
     }

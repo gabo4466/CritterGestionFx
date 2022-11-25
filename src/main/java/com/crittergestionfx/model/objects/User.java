@@ -4,6 +4,7 @@ import com.crittergestionfx.model.daoImp.UserDaoImp;
 import com.crittergestionfx.model.exceptions.UserException;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class User {
     private int idUser;
@@ -61,11 +62,14 @@ public class User {
         this.banned = banned;
     }
 
-    public User(int idUser, boolean admin, String email, String password, boolean banned) {
+    public User() {
+
+    }
+
+    public User(int idUser, String email, String name, boolean banned) {
         this.idUser = idUser;
-        this.admin = admin;
         this.email = email;
-        this.password = password;
+        this.name = name;
         this.banned = banned;
     }
 
@@ -84,5 +88,9 @@ public class User {
 
     public User logIn() throws SQLException, ClassNotFoundException, UserException{
         return UserDaoImp.getInstance().logIn(this);
+    }
+
+    public ArrayList<User> getAll() throws SQLException, ClassNotFoundException {
+        return UserDaoImp.getInstance().getAll();
     }
 }

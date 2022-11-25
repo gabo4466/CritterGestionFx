@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" minHeight="400.0" minWidth="500.0" prefHeight="550.0" prefWidth="600.0" spacing="20.0" styleClass="surface-0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crittergestionfx.controller.ListUsersController">
+<VBox alignment="TOP_CENTER" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="1000.0" spacing="20.0" styleClass="surface-0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.crittergestionfx.controller.ListUsersController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -22,14 +22,17 @@
             </Label>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <TableView fx:id="table" prefHeight="100.0" prefWidth="586.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Back" textFill="WHITE" />
+            <Button fx:id="backButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
