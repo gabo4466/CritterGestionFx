@@ -53,12 +53,12 @@ public class UserDaoImp implements GenericDao<User> {
 
     public ArrayList<User> getAll() throws SQLException {
         ArrayList<User> result = new ArrayList<User>();
-        String query = "select id_user, email, admin, name, banned from critter.users where admin=0;";
+        String query = "select id_user, email, admin, name, banned, reports from critter.users where admin=0;";
         PreparedStatement stmt = this.connection.prepareStatement(query);
         ResultSet rs = stmt.executeQuery();
         while (rs.next()) {
             result.add(new User(rs.getInt("id_user"), rs.getString("email"),
-                    rs.getString("name"), rs.getBoolean("banned")));
+                    rs.getString("name"), rs.getBoolean("banned"), rs.getInt("reports")));
         }
         return result;
     }

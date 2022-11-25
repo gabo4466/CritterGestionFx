@@ -40,7 +40,10 @@ public class ListUsersController implements Initializable {
         TableColumn<User, Boolean> colBanned = new TableColumn<>("Banned");
         TableColumn<User, Integer> colReports = new TableColumn<>("Reports");
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        table.getColumns().addAll(colName);
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colBanned.setCellValueFactory(new PropertyValueFactory<>("banned"));
+        colReports.setCellValueFactory(new PropertyValueFactory<>("reports"));
+        table.getColumns().addAll(colName, colEmail, colBanned, colReports);
 
     }
 

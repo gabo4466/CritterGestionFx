@@ -14,6 +14,16 @@ public class User {
     private String password;
     private boolean banned;
 
+    private int reports;
+
+    public int getReports() {
+        return reports;
+    }
+
+    public void setReports(int reports) {
+        this.reports = reports;
+    }
+
     public int getIdUser() {
         return idUser;
     }
@@ -66,11 +76,12 @@ public class User {
 
     }
 
-    public User(int idUser, String email, String name, boolean banned) {
+    public User(int idUser, String email, String name, boolean banned, int reports) {
         this.idUser = idUser;
         this.email = email;
         this.name = name;
         this.banned = banned;
+        this.reports = reports;
     }
 
     public User(int idUser, String email, String name, boolean banned, boolean admin) {

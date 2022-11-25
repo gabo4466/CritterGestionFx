@@ -22,9 +22,9 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="547.0" prefWidth="961.0">
          <children>
-            <TableView fx:id="table" prefHeight="100.0" prefWidth="586.0" />
+            <TableView fx:id="table" prefHeight="259.0" prefWidth="795.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
