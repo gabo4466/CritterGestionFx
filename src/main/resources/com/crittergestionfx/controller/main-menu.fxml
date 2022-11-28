@@ -16,7 +16,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="660.0" prefWidth="961.0" spacing="100.0">
          <children>
             <Button fx:id="listUsersButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="List Users" textFill="WHITE">
                <VBox.margin>
