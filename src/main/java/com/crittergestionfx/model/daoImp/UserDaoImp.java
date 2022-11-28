@@ -42,13 +42,57 @@ public class UserDaoImp implements GenericDao<User> {
     }
 
     @Override
-    public User create(User obj) {
-        return null;
+    public User create(User user) throws SQLException, UserException {
+        User result;
+        String query = "select id_user from critter.users where email=?";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        stmt.setString(1, user.getEmail());
+        ResultSet rs = stmt.executeQuery();
+        if (!rs.next()){
+            query = "insert into critter.users (email, name, password, admin, banned) values (?,?,?,1,0);";
+            PreparedStatement stmt2 = this.connection.prepareStatement(query);
+            stmt2.setString(1, user.getEmail());
+            stmt2.setString(2, user.getName());
+            stmt2.setString(3, user.getPassword());
+            int rs2 = stmt2.executeUpdate();
+            if (rs2>0){
+                query = "select id_user from critter.users where email=?";
+                stmt = this.connection.prepareStatement(query);
+                stmt.setString(1, user.getEmail());
+                rs = stmt.executeQuery();
+                if (rs.next()){
+                    result = this.read(rs.getInt("id_user"));
+                }else {
+                    result = null;
+                    throw new UserException(prop.getProperty("error.invalidUser"));
+                }
+            }else {
+                result = null;
+                throw new UserException(prop.getProperty("error.invalidUser"));
+            }
+        }else {
+            result = null;
+            throw new UserException(prop.getProperty("error.invalidUser"));
+        }
+        return result;
     }
 
     @Override
-    public User read(int id) {
-        return null;
+    public User read(int id) throws SQLException, UserException {
+        User result=null;
+        String query = "select id_user, email, admin, name from critter.users where id_user=?";
+        PreparedStatement stmt2 = this.connection.prepareStatement(query);
+        stmt2.setInt(1, id);
+        ResultSet rs2 = stmt2.executeQuery();
+        if (rs2.next()){
+            result = new User(rs2.getInt("id_user"),
+                    rs2.getBoolean("admin"), rs2.getString("name"),
+                    rs2.getString("email"));
+        }else{
+            result = null;
+            throw new UserException(prop.getProperty("error.invalidUser"));
+        }
+        return result;
     }
 
     public ArrayList<User> getAll() throws SQLException {

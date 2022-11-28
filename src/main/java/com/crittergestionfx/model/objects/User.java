@@ -76,6 +76,13 @@ public class User {
 
     }
 
+    public User(int idUser, boolean admin, String name, String email) {
+        this.idUser = idUser;
+        this.admin = admin;
+        this.name = name;
+        this.email = email;
+    }
+
     public User(int idUser, String email, String name, boolean banned, int reports) {
         this.idUser = idUser;
         this.email = email;
