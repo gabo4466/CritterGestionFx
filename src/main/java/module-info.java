@@ -8,4 +8,6 @@ module com.crittergestionfx.controller.crittergestionfx {
     opens com.crittergestionfx.controller to javafx.fxml;
     exports com.crittergestionfx.controller;
     exports com.crittergestionfx.model.objects;
+    exports com.crittergestionfx.model.exceptions;
+    exports com.crittergestionfx.model.services;
 }
