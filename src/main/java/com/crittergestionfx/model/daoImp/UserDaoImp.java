@@ -15,7 +15,7 @@ import java.util.Properties;
 
 public class UserDaoImp implements GenericDao<User> {
 
-    private Connection connection;
+    private final Connection connection;
     public static UserDaoImp instance = null;
     public static Properties prop;
 
@@ -89,7 +89,6 @@ public class UserDaoImp implements GenericDao<User> {
                     rs2.getBoolean("admin"), rs2.getString("name"),
                     rs2.getString("email"));
         }else{
-            result = null;
             throw new UserException(prop.getProperty("error.invalidUser"));
         }
         return result;
