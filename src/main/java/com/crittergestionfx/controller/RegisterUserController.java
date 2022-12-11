@@ -11,12 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterUserController implements Initializable {
     @FXML
@@ -38,7 +41,7 @@ public class RegisterUserController implements Initializable {
     private Label passwordError;
 
     @FXML
-    private TextField passwordInput;
+    private PasswordField passwordInput;
 
     @FXML
     private Button registerButton;
@@ -47,7 +50,7 @@ public class RegisterUserController implements Initializable {
     private Label repeatPasswordError;
 
     @FXML
-    private TextField repeatPasswordInput;
+    private PasswordField repeatPasswordInput;
 
     private void loadScreen(ActionEvent event, String target) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(target));
@@ -61,7 +64,43 @@ public class RegisterUserController implements Initializable {
     private void registerUser(){
         HashService hashService = new HashService();
         User user = new User(nameInput.getText(), emailInput.getText(), hashService.toHash(passwordInput.getText()));
+        try{
+            user.register();
+        }catch (Exception e){
+            emailError.setText(e.getMessage());
+        }
+    }
 
+    private boolean validateRegister(){
+        boolean result = true;
+        Pattern pattern = Pattern.compile("^(.+)@(.+)$");
+        Pattern patternPassword = Pattern.compile("^(?:(?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$");
+        Matcher matcher = pattern.matcher(emailInput.getText());
+
+        if (matcher.matches()){
+            System.out.println("Email valido");
+            result = false;
+        }else{
+            System.out.println("email invalido");
+            emailError.setText("Invalid email");
+        }
+
+        Matcher matcherPassword = patternPassword.matcher(passwordInput.getText());
+
+        if (matcherPassword.matches() && passwordInput.getText().length() >= 5){
+            System.out.println("Password valid");
+        }else{
+            result = false;
+            System.out.println("Password invalid: " + passwordInput.getText());
+            passwordError.setText("Password must contain at least 1 letter upperCase, 1 number and  5 characters");
+        }
+
+        if (!passwordInput.getText().equals(repeatPasswordInput.getText())){
+            result = false;
+            repeatPasswordError.setText("Password doesnt match");
+        }
+
+        return result;
     }
 
     @Override
@@ -75,6 +114,9 @@ public class RegisterUserController implements Initializable {
             }
         });
         this.registerButton.setOnAction(actionEvent-> {
+            if (validateRegister()){
+                registerUser();
+            }
         });
     }
 }

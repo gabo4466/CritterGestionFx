@@ -128,4 +128,8 @@ public class User {
     public ArrayList<User> getAll() throws SQLException, ClassNotFoundException {
         return UserDaoImp.getInstance().getAll();
     }
+
+    public User register() throws SQLException, ClassNotFoundException, UserException {
+        return UserDaoImp.getInstance().create(this);
+    }
 }
