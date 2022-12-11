@@ -32,8 +32,23 @@ public class UserDaoImp implements GenericDao<User> {
     }
 
     @Override
-    public User update(User obj) {
-        return null;
+    public boolean update(User user) throws SQLException, UserException {
+        boolean result;
+        String query = "update critter.users set admin = ?, name = ?, email = ?,  banned = ? where id_user = ?;";
+        PreparedStatement stmt = this.connection.prepareStatement(query);
+        stmt.setBoolean(1, user.isAdmin());
+        stmt.setString(2, user.getName());
+        stmt.setString(3, user.getEmail());
+        stmt.setBoolean(4, user.isBanned());
+        stmt.setInt(5, user.getIdUser());
+        int rs = stmt.executeUpdate();
+        if(rs>0){
+            result = true;
+        }else {
+            result = false;
+            throw new UserException(prop.getProperty("error.generic"));
+        }
+        return result;
     }
 
     @Override

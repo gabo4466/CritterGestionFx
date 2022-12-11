@@ -104,6 +104,15 @@ public class User {
         this.banned = banned;
         this.reports = reports;
         this.banButton = new Button("ban");
+        this.banButton.setOnAction(actionEvent -> {
+            this.banned = !this.banned;
+            try {
+                this.update();
+            }catch (Exception ignored) {
+
+            }
+
+        });
     }
 
     public User(int idUser, String email, String name, boolean banned, boolean admin) {
@@ -131,5 +140,9 @@ public class User {
 
     public User register() throws SQLException, ClassNotFoundException, UserException {
         return UserDaoImp.getInstance().create(this);
+    }
+
+    public boolean update() throws SQLException, ClassNotFoundException, UserException {
+        return UserDaoImp.getInstance().update(this);
     }
 }

@@ -100,7 +100,7 @@ public class RegisterUserController implements Initializable {
             result = false;
             repeatPasswordError.setText("Password doesnt match");
         }
-        System.out.println("Valido: " + result);
+
         return result;
     }
 
