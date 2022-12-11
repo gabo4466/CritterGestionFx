@@ -1,5 +1,7 @@
 package com.crittergestionfx.controller;
 
+import com.crittergestionfx.model.objects.User;
+import com.crittergestionfx.model.services.HashService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +58,12 @@ public class RegisterUserController implements Initializable {
         stage.show();
     }
 
+    private void registerUser(){
+        HashService hashService = new HashService();
+        User user = new User(nameInput.getText(), emailInput.getText(), hashService.toHash(passwordInput.getText()));
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.cancelButton.setOnAction(actionEvent -> {
@@ -65,6 +73,8 @@ public class RegisterUserController implements Initializable {
             }catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        });
+        this.registerButton.setOnAction(actionEvent-> {
         });
     }
 }

@@ -2,6 +2,7 @@ package com.crittergestionfx.model.objects;
 
 import com.crittergestionfx.model.daoImp.UserDaoImp;
 import com.crittergestionfx.model.exceptions.UserException;
+import javafx.scene.control.Button;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +14,11 @@ public class User {
     private String email;
     private String password;
     private boolean banned;
+    private Button banButton;
+
+    public Button getBanButton() {
+        return banButton;
+    }
 
     private int reports;
 
@@ -76,11 +82,19 @@ public class User {
 
     }
 
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.banButton = new Button("ban");
+    }
+
     public User(int idUser, boolean admin, String name, String email) {
         this.idUser = idUser;
         this.admin = admin;
         this.name = name;
         this.email = email;
+        this.banButton = new Button("ban");
     }
 
     public User(int idUser, String email, String name, boolean banned, int reports) {
@@ -89,6 +103,7 @@ public class User {
         this.name = name;
         this.banned = banned;
         this.reports = reports;
+        this.banButton = new Button("ban");
     }
 
     public User(int idUser, String email, String name, boolean banned, boolean admin) {
@@ -97,11 +112,13 @@ public class User {
         this.email = email;
         this.banned = banned;
         this.admin = admin;
+        this.banButton = new Button("ban");
     }
 
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+        this.banButton = new Button("ban");
     }
 
     public User logIn() throws SQLException, ClassNotFoundException, UserException{
