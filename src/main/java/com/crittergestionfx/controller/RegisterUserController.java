@@ -68,6 +68,7 @@ public class RegisterUserController implements Initializable {
             user.register();
         }catch (Exception e){
             emailError.setText(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,10 +78,14 @@ public class RegisterUserController implements Initializable {
         Pattern patternPassword = Pattern.compile("^(?:(?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$");
         Matcher matcher = pattern.matcher(emailInput.getText());
 
-        if (matcher.matches()){
+        if (!matcher.matches()){
             result = false;
-        }else{
             emailError.setText("Invalid email");
+        }
+
+        if (nameInput.getText().length() < 4){
+            result = false;
+            nameError.setText("Name must have at least 4 characters");
         }
 
         Matcher matcherPassword = patternPassword.matcher(passwordInput.getText());
@@ -95,7 +100,7 @@ public class RegisterUserController implements Initializable {
             result = false;
             repeatPasswordError.setText("Password doesnt match");
         }
-
+        System.out.println("Valido: " + result);
         return result;
     }
 
@@ -112,6 +117,12 @@ public class RegisterUserController implements Initializable {
         this.registerButton.setOnAction(actionEvent-> {
             if (validateRegister()){
                 registerUser();
+                try {
+                    loadScreen(actionEvent, "main-menu.fxml");
+
+                }catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
