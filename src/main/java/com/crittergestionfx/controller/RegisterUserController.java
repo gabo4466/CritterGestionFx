@@ -78,18 +78,14 @@ public class RegisterUserController implements Initializable {
         Matcher matcher = pattern.matcher(emailInput.getText());
 
         if (matcher.matches()){
-            System.out.println("Email valido");
             result = false;
         }else{
-            System.out.println("email invalido");
             emailError.setText("Invalid email");
         }
 
         Matcher matcherPassword = patternPassword.matcher(passwordInput.getText());
 
-        if (matcherPassword.matches() && passwordInput.getText().length() >= 5){
-            System.out.println("Password valid");
-        }else{
+        if (!(matcherPassword.matches() && passwordInput.getText().length() >= 5)){
             result = false;
             System.out.println("Password invalid: " + passwordInput.getText());
             passwordError.setText("Password must contain at least 1 letter upperCase, 1 number and  5 characters");
