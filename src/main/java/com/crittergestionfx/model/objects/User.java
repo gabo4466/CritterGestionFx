@@ -1,5 +1,6 @@
 package com.crittergestionfx.model.objects;
 
+import com.crittergestionfx.controller.RegisterUserController;
 import com.crittergestionfx.model.daoImp.UserDaoImp;
 import com.crittergestionfx.model.exceptions.UserException;
 import javafx.scene.control.Button;
@@ -7,7 +8,7 @@ import javafx.scene.control.Button;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class User {
+public class User extends RegisterUserController {
     private int idUser;
     private boolean admin;
     private String name;

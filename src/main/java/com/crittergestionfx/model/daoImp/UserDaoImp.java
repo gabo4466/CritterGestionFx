@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class UserDaoImp implements GenericDao<User> {
+public class UserDaoImp extends DBConnection implements GenericDao<User> {
 
     private final Connection connection;
     public static UserDaoImp instance = null;
